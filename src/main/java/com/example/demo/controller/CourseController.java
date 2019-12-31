@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,12 +30,12 @@ public class CourseController {
         return new ResponseEntity<>(allCourses,HttpStatus.OK); // 我返回结果给你
     }
 
-//    @GetMapping(path = "/api/course/findAllCourses", produces = "application/json")
-//    public HttpEntity<List<CourseDto>> findAllCourses(){
-//        List<CourseDto> allCourses = courseService.findAllCourses();
-//
-//        return new ResponseEntity<>(allCourses, HttpStatus.OK);
-//    }
+    @GetMapping(path = "/api/course/findAllCourses", produces = "application/json")
+    public HttpEntity<List<CourseDto>> findAllCourses1(){
+        List<CourseDto> allCourses = courseService.findAllCourses1();
+
+        return new ResponseEntity<>(allCourses, HttpStatus.OK);
+    }
 
     @GetMapping(path = "/look-up/{inputString}", produces = "application/json")
     public HttpEntity<Course> searchCourse(@PathVariable("inputString") String inputString) {
@@ -44,6 +43,12 @@ public class CourseController {
         List<Course> findedCourse = courseService.searchByCourseName(inputString);
 
         return new ResponseEntity(findedCourse, HttpStatus.OK);
+    }
+    @GetMapping(path = "/123", produces = "application/json")
+    public HttpEntity<List<CourseDto>> findAllCourses2(){
+        List<CourseDto> allCourses = courseService.findAllCourses1();
+
+        return new ResponseEntity<>(allCourses, HttpStatus.OK);
     }
 }
 

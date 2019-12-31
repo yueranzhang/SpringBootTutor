@@ -2,6 +2,7 @@ package com.example.demo.repository;
 
 import com.example.demo.modal.Course;
 import com.example.demo.modal.Instructor;
+import com.example.demo.modal.dto.CourseDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 @Repository
 public class CourseRepository {
     List<Course> courses = new ArrayList<>();
+    List<CourseDto> courseDtos = new ArrayList<>();
 
     // constructor
     public CourseRepository() {
@@ -28,8 +30,8 @@ public class CourseRepository {
                 .endDate(new Date("12/24/2018"))
                 .timeFrame("8am-10am")
                 .build();
-
         courses.add(javaOne);
+        courses.add(two);
     }
 
 
@@ -39,9 +41,13 @@ public class CourseRepository {
         return  courses;
     }
 
-    public List<Course> findAllCourse(String searchByCourseName){
+    public List<CourseDto> findAllCourse(){
+        for(Course temp : courses){
+            CourseDto build = CourseDto.builder().courseName(temp.getClassName()).build();
+            courseDtos.add(build);
+        }
 
-        return new ArrayList<Course>();
+            return courseDtos;
     }
 
     public List<Course> findCourseByName(String courseName) {

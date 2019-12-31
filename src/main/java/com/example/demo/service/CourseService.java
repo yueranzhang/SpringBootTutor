@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import com.example.demo.modal.Course;
+import com.example.demo.modal.dto.CourseDto;
 import com.example.demo.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,11 @@ public class CourseService {
 
     public List<Course> findAllCourses(){
 
-        return courseRepository.findAllClasses();
+        return courseRepository.findAllClasses();//连接DAO层
+    }
+
+    public List<CourseDto> findAllCourses1(){
+        return courseRepository.findAllCourse();
     }
 
     public List<Course> searchByCourseName(String input){
